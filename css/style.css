@@ -243,7 +243,7 @@ button {
 
 header {
      height: 105px;
-     background: #8b1310;
+     background: #ffffff;
      width: 100%;
      padding: 33px 30px;
 }
@@ -260,8 +260,9 @@ ul.email {
 }
 
 ul.email li {
+     
      display: inline-block;
-     color: #fff;
+     color: #000000;
      padding: 0 20px;
      font-size: 17px;
 }
@@ -275,11 +276,11 @@ ul.email li a {
 }
 
 ul.email li a {
-     color: #fff;
+     color: #e93239;
 }
 
 ul.email li i {
-     color: #fff;
+     color: #e93239;
      font-size: 20px;
      padding-right: 10px;
 }
@@ -337,33 +338,70 @@ ul.email li img {
 
 .banner_main {
      background: url(../images/banner1.jpg);
-     background-size: 100% 100%;
+     background-size: cover; 
      background-position: center;
      background-repeat: no-repeat;
      height: 1034px;
      display: flex;
      justify-content: center;
      align-items: center;
-}
+ }
+ 
+ /* Media query para dispositivos móviles y pantallas más pequeñas */
+ @media (max-width: 768px) {
+     .banner_main {
+         background-position: center top; /* Cambia la posición de la imagen */
+         height: 800px; /* Ajusta la altura si es necesario */
+     }
+ }
+ 
+ @media (max-width: 480px) {
+     .banner_main {
+         background-position: center top; /* Ajusta aún más la posición si es necesario */
+         height: 600px; /* Ajusta la altura según lo necesario para pantallas más pequeñas */
+     }
+ }
+ 
+/* En tu archivo CSS */
+.logo-footer {
+     width: 170px;
+     height: 110px;
+   
+ }
+ .logo{
+     width: 170px;
+     height: 110px;
+     margin-top: -15px;
+ }
+ 
 
-.carousel-indicators li {
+ .carousel-indicators {
+     position: absolute;
+     bottom: -40px; /* Ajusta este valor según tus necesidades */
+     left: 50%;
+     transform: translateX(-65%);
+     display: flex;
+     justify-content: center;
+     width: 100%;
+ }
+ 
+ .carousel-indicators li {
      width: 20px;
      height: 20px;
-     border-radius: 11px;
-     background-color: #fe9a0c;
-     margin: 0px 4px;
+     border-radius: 50%;
+     background-color: #ffffff;
+     margin: 0 4px;
      cursor: pointer;
-}
+     opacity: 0.7; /* Opcional: para mejorar la visibilidad */
+ }
+ 
+ .carousel-indicators .active {
+     background-color: #000000; /* Cambia el color del indicador activo si lo deseas */
+ }
+ 
 
-.carousel-indicators li.active {
-     background-color: #fff;
-}
 
-.carousel-indicators {
-     top: 122%;
-     margin-left: 5%;
-     right: inherit;
-}
+
 
 .banner_main {
      position: relative;
@@ -405,10 +443,6 @@ ul.email li img {
      margin-top: 55px;
 }
 
-.ban_btn .carousel-control-next-icon,
-.carousel-control-prev-icon {
-     display: none;
-}
 
 
 /** about **/
