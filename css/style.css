@@ -403,7 +403,21 @@ ul.email li img {
      background-color: #000000; /* Cambia el color del indicador activo si lo deseas */
  }
  
-
+/* Ajuste para pantallas medianas (tablets) */
+@media (max-width: 768px) {
+     #myCarousel {
+         margin-top: 100px; /* Ajusta este valor según tus necesidades */
+     }
+ }
+ 
+ /* Ajuste para pantallas pequeñas (móviles) */
+ @media (max-width: 480px) {
+     #myCarousel {
+         margin-top: 200px; /* Ajusta este valor según tus necesidades */
+     }
+ }
+ 
+ 
 
 
 
