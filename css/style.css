@@ -374,6 +374,10 @@ ul.email li img {
      margin-top: -15px;
  }
  
+ .carousel-item img {
+     border-radius: 15px; /* Ajusta el valor según el grado de redondeo que desees */
+ }
+ 
 
  .carousel-indicators {
      position: absolute;
