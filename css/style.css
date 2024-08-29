@@ -362,6 +362,55 @@ ul.email li img {
      }
  }
  
+
+
+/* Estilos generales para el contenedor del header */
+.header-container {
+     display: flex; /* Usa flexbox para el contenedor */
+     align-items: center; /* Alinea los items verticalmente en el centro */
+     justify-content: space-between; /* Distribuye espacio entre los elementos */
+     padding: 10px; /* Ajusta el padding según sea necesario */
+ }
+ 
+ /* Estilos para el logo */
+ .logo {
+     max-width: 150px; /* Ajusta el tamaño del logo si es necesario */
+ }
+ 
+ /* Estilos para el menú */
+ .menu {
+     list-style: none; /* Elimina los puntos de la lista */
+     margin: 0; /* Elimina el margen */
+     padding: 0; /* Elimina el padding */
+     display: flex; /* Usa flexbox para el menú */
+     flex-direction: row; /* Muestra los items en una fila */
+ }
+ 
+ /* Estilos para los elementos del menú */
+ .menu li {
+     margin-left: 20px; /* Espacio entre los elementos */
+ }
+ 
+ /* Estilos opcionales para el menú en dispositivos móviles */
+ @media (max-width: 768px) {
+     .header-container {
+         flex-direction: column; /* Muestra los elementos en una columna en pantallas pequeñas */
+         align-items: flex-start; /* Alinea los elementos al inicio */
+     }
+ 
+     .menu {
+         flex-direction: column; /* Muestra los items del menú en una columna */
+         margin-top: 10px; /* Espacio superior entre la imagen y el menú */
+     }
+ 
+     .menu li {
+         margin-left: 0; /* Elimina el margen izquierdo en dispositivos móviles */
+         margin-bottom: 10px; /* Espacio entre los elementos del menú */
+     }
+ }
+ 
+
+ 
 /* En tu archivo CSS */
 .logo-footer {
      width: 170px;
