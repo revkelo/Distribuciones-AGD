@@ -588,12 +588,49 @@ ul.email li img {
      padding-bottom: 60px;
 }
 
+/* El h1 del inicio comparte el estilo de los h2 de sección, pero sin
+   versalitas: un titular largo todo en mayúsculas cuesta de leer, y este
+   es la primera frase que ve un cliente. */
 .titlepage h2 {
      font-size: 40px;
      font-weight: 700;
      line-height: 46px;
      color: #251d12;
      text-transform: uppercase;
+}
+
+.titlepage h1 {
+     font-size: 40px;
+     font-weight: 700;
+     line-height: 46px;
+     color: #251d12;
+     margin: 0;
+}
+
+.about .titlepage span {
+     display: block;
+     max-width: 62ch;
+     margin-top: 14px;
+     line-height: 26px;
+     color: #4a4033;
+     font-size: 17px;
+}
+
+.about .titlepage .marcas {
+     max-width: 70ch;
+     margin-top: 12px;
+     line-height: 24px;
+     color: #6b6055;
+     font-size: 15px;
+}
+
+.about .titlepage .marcas strong {
+     color: #251d12;
+     font-weight: 600;
+}
+
+@media (max-width: 767px) {
+     .titlepage h1 { font-size: 28px; line-height: 34px; }
 }
 
 .read_more {

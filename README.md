@@ -1,6 +1,13 @@
 # Distribuciones AGD — Sitio Web Corporativo
 
-Página web oficial de **Distribuciones AGD**, empresa colombiana de ferretería y pinturas. Sitio estático desarrollado como proyecto freelance, desplegable en cualquier hosting o GitHub Pages sin necesidad de backend.
+Página web oficial de **Distribuciones AGD**, empresa colombiana de ferretería y pinturas.
+Sitio estático, sin backend.
+
+**En producción:** <https://distribucionesagd.kgstudio.top>
+
+Desplegado en Vercel; cada push a `main` publica. Antes estaba en GitHub Pages,
+que sigue respondiendo en `revkelo.github.io/Distribuciones-AGD/` — el `canonical`
+del HTML apunta al dominio bueno para que Google no los cuente como dos sitios.
 
 ---
 
@@ -18,7 +25,7 @@ Página web oficial de **Distribuciones AGD**, empresa colombiana de ferretería
 
 | Sección | Descripción |
 |---------|-------------|
-| **Hero / Carousel** | 12 imágenes de productos con carrusel automático |
+| **Hero / Carousel** | Carrusel con los logos de las 12 marcas distribuidas |
 | **¿Quiénes Somos?** | Presentación de la empresa con CTA a WhatsApp |
 | **Servicios** | 4 servicios destacados con imágenes |
 | **Contacto** | Botón flotante de WhatsApp con mensaje preescrito |
@@ -29,8 +36,9 @@ Página web oficial de **Distribuciones AGD**, empresa colombiana de ferretería
 
 - **Responsive** — adaptado a móvil, tablet y escritorio
 - **WhatsApp Business** — botón flotante con mensaje preescrito para consultar precios y catálogo
-- **Carousel de productos** — Owl Carousel con 12 imágenes del catálogo
-- **Sin backend** — sitio 100% estático, listo para hosting compartido o GitHub Pages
+- **Carrusel de marcas** — los 12 proveedores que distribuye AGD (Pintuco, Sika, Corona, Soudal, Bler, Tonner, ICO, Topex, Pintuland, Kolor, Supermastick, Tito Pabón). Los nombres van también en texto en la portada: en una imagen no hay nada que buscar
+- **Sin backend** — sitio 100% estático
+- **SEO** — título, descripción, `canonical`, Open Graph (importa: el enlace se reparte por WhatsApp) y ficha `HardwareStore` en JSON-LD
 - **Carga optimizada** — loader animado mientras carga el contenido
 
 ---
@@ -53,7 +61,7 @@ git clone https://github.com/revkelo/Distribuciones-AGD.git
 # Abrir index.html en el navegador
 ```
 
-Para desplegar en producción: subir todos los archivos al servidor de hosting o conectar a GitHub Pages.
+Para publicar: `git push` a `main`. Vercel despliega solo.
 
 ---
 
