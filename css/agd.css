@@ -1,0 +1,500 @@
+/* ============================================================
+   Distribuciones AGD — hoja de estilos
+   ------------------------------------------------------------
+   La idea: la página se construye con muestras de pintura. Los
+   chips de color no son adorno, son el producto — separan las
+   secciones, abren la portada y llevan su código como lo lleva
+   una carta de colores de verdad.
+
+   El rojo no es inventado: es el del logo, muestreado del PNG.
+   ============================================================ */
+
+:root {
+  /* ── Color ── */
+  --tinta:      #1A1614;   /* negro cálido: todo el texto */
+  --tinta-70:   #5A504A;   /* texto secundario */
+  --muro:       #FFFFFF;   /* la pared sin pintar: el fondo */
+  --yeso:       #F3F0EB;   /* banda alterna */
+  --linea:      #E3DDD5;
+
+  --rojo:       #C01F24;   /* el del logo */
+  --rojo-hondo: #8E1519;
+
+  /* Los seis de la carta. Colores de pintura reales, no de interfaz. */
+  --chip-1: #C01F24;  /* rojo   */
+  --chip-2: #E8791A;  /* naranja*/
+  --chip-3: #F2B705;  /* amarillo */
+  --chip-4: #2E7D5B;  /* verde  */
+  --chip-5: #1D5B8E;  /* azul   */
+  --chip-6: #4A3B33;  /* café   */
+
+  /* ── Tipografía ──
+     Archivo tiene eje de ancho: los titulares van expandidos, como
+     la rotulación de un aviso de ferretería o la tapa de un galón.
+     El mono es para los códigos, que es donde vive en una carta. */
+  --display: 'Archivo', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+
+  --radio: 4px;   /* casi recto: esto es un tarro, no una app */
+  --borde: 1.5px solid var(--tinta);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--muro);
+  color: var(--tinta);
+  font-family: var(--display);
+  font-variation-settings: 'wdth' 100, 'wght' 400;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: 3px solid var(--rojo);
+  outline-offset: 3px;
+}
+
+.envoltura { width: min(1180px, 100% - 2.5rem); margin-inline: auto; }
+
+/* ── Tipografía de la página ─────────────────────────────── */
+
+h1, h2, h3 { margin: 0; font-family: var(--display); letter-spacing: -0.025em; }
+
+h1 {
+  font-variation-settings: 'wdth' 112, 'wght' 800;
+  font-size: clamp(2.5rem, 6.2vw, 4.4rem);
+  line-height: 0.98;
+}
+
+h2 {
+  font-variation-settings: 'wdth' 110, 'wght' 800;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.05;
+}
+
+h3 {
+  font-variation-settings: 'wdth' 104, 'wght' 700;
+  font-size: 1.12rem;
+  line-height: 1.25;
+}
+
+p { margin: 0; }
+
+/* El código de una muestra: mono, espaciado, en versalitas. */
+.rotulo {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rojo);
+}
+
+.entradilla {
+  font-size: 1.12rem;
+  color: var(--tinta-70);
+  max-width: 54ch;
+}
+
+/* ── Botones ─────────────────────────────────────────────── */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  font-variation-settings: 'wdth' 100, 'wght' 700;
+  font-size: 1rem;
+  cursor: pointer;
+  border: var(--borde);
+  transition: transform 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+}
+
+.boton svg { width: 20px; height: 20px; flex: none; }
+
+.boton--fuerte { background: var(--rojo); border-color: var(--rojo); color: #fff; }
+.boton--fuerte:hover { background: var(--rojo-hondo); border-color: var(--rojo-hondo); transform: translateY(-2px); }
+
+.boton--linea { background: transparent; color: var(--tinta); }
+.boton--linea:hover { background: var(--tinta); color: var(--muro); transform: translateY(-2px); }
+
+.boton--claro { background: #fff; border-color: #fff; color: var(--tinta); }
+.boton--claro:hover { transform: translateY(-2px); background: var(--yeso); border-color: var(--yeso); }
+
+/* ── Cabecera ────────────────────────────────────────────── */
+
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--linea);
+}
+
+.cabecera__fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 74px;
+}
+
+.cabecera__logo img { height: 54px; width: auto; }
+
+.cabecera__datos {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--tinta-70);
+}
+
+.cabecera__datos a:hover { color: var(--rojo); }
+
+/* ── La franja de muestras ───────────────────────────────────
+   Separa secciones. Seis colores, sin texto: es una carta de
+   colores vista de canto. */
+
+.franja {
+  display: flex;
+  height: 10px;
+}
+
+.franja span { flex: 1; }
+.franja span:nth-child(1) { background: var(--chip-1); }
+.franja span:nth-child(2) { background: var(--chip-2); }
+.franja span:nth-child(3) { background: var(--chip-3); }
+.franja span:nth-child(4) { background: var(--chip-4); }
+.franja span:nth-child(5) { background: var(--chip-5); }
+.franja span:nth-child(6) { background: var(--chip-6); }
+
+/* ── Portada ─────────────────────────────────────────────── */
+
+.portada { padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3rem, 6vw, 4.5rem); }
+
+.portada__rejilla {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.portada h1 { margin: 1rem 0 1.25rem; }
+.portada h1 em { font-style: normal; color: var(--rojo); }
+
+.portada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* Las marcas escritas: en el carrusel viejo eran imágenes, y en una
+   imagen no hay nada que buscar ni que leer en voz alta. */
+.portada__marcas {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: var(--tinta-70);
+}
+
+.portada__marcas strong {
+  color: var(--tinta);
+  font-weight: 500;
+}
+
+/* ── La carta de colores: el elemento firma ──────────────────
+   Seis muestras en abanico, como la carta que el pintor abre en
+   el mostrador. Se despliegan al cargar; al pasar por encima, la
+   muestra se adelanta, igual que cuando uno la separa con el dedo
+   para compararla contra la pared. */
+
+.carta {
+  position: relative;
+  height: clamp(320px, 38vw, 430px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Aspas finas que salen de un mismo remache, como las de una carta de
+   verdad. Con aspas anchas esto parecía una baraja de cartas. */
+.muestra {
+  position: absolute;
+  bottom: 34px;
+  width: clamp(58px, 6.4vw, 72px);
+  height: clamp(215px, 25vw, 292px);
+  border-radius: 3px 3px 2px 2px;
+  transform-origin: 50% 100%;
+  box-shadow: 0 10px 26px -14px rgba(26,22,20,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 0.85rem;
+  color: rgba(255,255,255,0.92);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  transition: transform 0.35s cubic-bezier(0.22, 0.7, 0.25, 1);
+  /* El abanico se abre al cargar, cerrado primero y desplegado después. */
+  animation: abrir 0.9s cubic-bezier(0.22, 0.7, 0.25, 1) backwards;
+}
+
+@keyframes abrir {
+  from { transform: rotate(0deg); opacity: 0; }
+}
+
+/* El remache: sin él las aspas parecen flotar sueltas. */
+.carta::after {
+  content: "";
+  position: absolute;
+  bottom: 22px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--tinta);
+  box-shadow: 0 0 0 5px var(--muro);
+}
+
+.muestra:nth-child(1) { background: var(--chip-1); transform: rotate(-45deg); animation-delay: 0.06s; }
+.muestra:nth-child(2) { background: var(--chip-2); transform: rotate(-27deg); animation-delay: 0.13s; }
+.muestra:nth-child(3) { background: var(--chip-3); transform: rotate(-9deg);  animation-delay: 0.20s; color: rgba(26,22,20,0.8); }
+.muestra:nth-child(4) { background: var(--chip-4); transform: rotate(9deg);   animation-delay: 0.27s; }
+.muestra:nth-child(5) { background: var(--chip-5); transform: rotate(27deg);  animation-delay: 0.34s; }
+.muestra:nth-child(6) { background: var(--chip-6); transform: rotate(45deg);  animation-delay: 0.41s; }
+
+/* Separar un aspa con el dedo para compararla contra la pared. */
+.muestra:nth-child(1):hover { transform: rotate(-52deg); }
+.muestra:nth-child(2):hover { transform: rotate(-32deg); }
+.muestra:nth-child(3):hover { transform: rotate(-12deg); }
+.muestra:nth-child(4):hover { transform: rotate(12deg); }
+.muestra:nth-child(5):hover { transform: rotate(32deg); }
+.muestra:nth-child(6):hover { transform: rotate(52deg); }
+
+/* ── Secciones ───────────────────────────────────────────── */
+
+.seccion { padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
+.seccion--yeso { background: var(--yeso); }
+
+.seccion__cabeza { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.seccion__cabeza h2 { margin: 0.6rem 0 0.9rem; }
+
+/* ── Marcas ──────────────────────────────────────────────────
+   Rejilla, no carrusel. El carrusel enseñaba una marca cada cinco
+   segundos y escondía once; y "¿ustedes manejan Pintuco?" es
+   exactamente la pregunta que trae al cliente. Verlas todas de una
+   es la respuesta. */
+
+.marcas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+  gap: 1px;
+  background: var(--linea);
+  border: 1px solid var(--linea);
+}
+
+.marca {
+  background: #fff;
+  aspect-ratio: 16 / 7;
+  display: grid;
+  place-items: center;
+  padding: 1.4rem;
+  transition: background-color 0.2s ease;
+}
+
+/* A todo color, no en gris hasta el hover. Lo que trae al cliente es
+   reconocer su marca de un vistazo: apagarlas es apagar el argumento. */
+.marca img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.marca:hover img { transform: scale(1.05); }
+
+.marcas__nota {
+  margin-top: 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--tinta-70);
+}
+
+/* ── Categorías ──────────────────────────────────────────── */
+
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.categoria { text-align: center; }
+
+.categoria__foto {
+  position: relative;
+  margin: 0 auto 1.25rem;
+  width: min(230px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--yeso);
+}
+
+.seccion--yeso .categoria__foto { background: #fff; }
+
+.categoria__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.categoria:hover .categoria__foto img { transform: scale(1.05); }
+
+/* El aro de color liga cada categoría con la carta de la portada. */
+.categoria__foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+.categoria:nth-child(1) .categoria__foto::after { border-color: var(--chip-1); }
+.categoria:nth-child(2) .categoria__foto::after { border-color: var(--chip-3); }
+.categoria:nth-child(3) .categoria__foto::after { border-color: var(--chip-4); }
+.categoria:nth-child(4) .categoria__foto::after { border-color: var(--chip-5); }
+
+.categoria p { margin-top: 0.45rem; color: var(--tinta-70); font-size: 0.96rem; }
+
+/* ── Nosotros ────────────────────────────────────────────── */
+
+.nosotros {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+.nosotros__foto img { border-radius: var(--radio); width: 100%; }
+
+.principios {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.principio {
+  padding-left: 1.15rem;
+  border-left: 3px solid var(--rojo);
+}
+
+.principio h3 { font-size: 0.82rem; font-family: var(--mono); font-variation-settings: normal; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rojo); }
+.principio p { margin-top: 0.4rem; color: var(--tinta-70); font-size: 1rem; }
+
+/* ── Llamada final ───────────────────────────────────────── */
+
+.cierre {
+  background: var(--rojo);
+  color: #fff;
+  padding: clamp(3.5rem, 7vw, 5rem) 0;
+  text-align: center;
+}
+
+.cierre h2 { max-width: 18ch; margin: 0.75rem auto 1rem; }
+.cierre .rotulo { color: rgba(255,255,255,0.75); }
+.cierre p { color: rgba(255,255,255,0.9); max-width: 48ch; margin: 0 auto 2rem; }
+
+/* ── Pie ─────────────────────────────────────────────────── */
+
+.pie { background: var(--tinta); color: rgba(255,255,255,0.72); padding: clamp(3rem, 6vw, 4rem) 0 2rem; }
+.pie a:hover { color: #fff; }
+
+.pie__rejilla {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.pie h3 { color: #fff; font-size: 0.78rem; font-family: var(--mono); font-variation-settings: normal; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1rem; }
+.pie__logo { height: 62px; width: auto; margin-bottom: 1rem; filter: brightness(0) invert(1); }
+.pie dl { margin: 0; display: grid; gap: 0.55rem; font-size: 0.95rem; }
+.pie dt { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.pie dd { margin: 0; }
+
+.pie__cola {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── Botón flotante de WhatsApp ──────────────────────────── */
+
+.flotante {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 28px -10px rgba(37,211,102,0.85);
+  transition: transform 0.18s ease;
+}
+
+.flotante:hover { transform: scale(1.08); }
+.flotante svg { width: 30px; height: 30px; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .portada__rejilla,
+  .nosotros { grid-template-columns: 1fr; }
+  /* El abanico pasa debajo del texto: en vertical, primero se lee
+     qué se vende y después se mira el color. */
+  .portada__rejilla > .carta { order: 2; }
+  .pie__rejilla { grid-template-columns: 1fr 1fr; }
+  .cabecera__datos .cabecera__dato--largo { display: none; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .pie__rejilla { grid-template-columns: 1fr; }
+  .cabecera__datos { display: none; }
+  .categorias { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .categoria__foto { width: min(150px, 100%); }
+  .boton { width: 100%; justify-content: center; }
+  /* `auto-fill` con mínimo de 178px daba una sola columna en un teléfono:
+     doce logos a pantalla completa, uno debajo de otro. De a dos se
+     recorren de un vistazo, que es para lo que están. */
+  .marcas { grid-template-columns: 1fr 1fr; }
+  .marca { padding: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
