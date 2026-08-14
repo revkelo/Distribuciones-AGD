@@ -784,7 +784,7 @@ html { scroll-behavior: smooth; }
   z-index: 200;
   overflow: hidden;
   background: var(--muro);
-  animation: carga-levantar 0.5s cubic-bezier(0.7, 0, 0.3, 1) 1.2s forwards;
+  animation: carga-levantar 0.5s cubic-bezier(0.7, 0, 0.3, 1) 1.62s forwards;
 }
 
 @keyframes carga-levantar {
@@ -862,7 +862,7 @@ html { scroll-behavior: smooth; }
   /* Blanco sobre el rojo: el PNG viene en rojo y ahí se perdería. */
   filter: brightness(0) invert(1);
   transform: translate(-50%, -50%) scale(0.94);
-  animation: carga-logo 0.4s cubic-bezier(0.2, 0.8, 0.3, 1) 0.88s forwards;
+  animation: carga-logo 0.55s cubic-bezier(0.2, 0.8, 0.3, 1) 0.86s forwards;
 }
 
 @keyframes carga-logo {
