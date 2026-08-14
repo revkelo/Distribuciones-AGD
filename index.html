@@ -36,6 +36,15 @@
       rel="stylesheet">
    <link rel="stylesheet" href="css/agd.css">
 
+   <!-- Va aquí, en línea y antes de pintar nada, para que quien ya vio la
+        brochada no alcance a verla parpadear al volver. -->
+   <script>
+      try {
+         if (sessionStorage.getItem('agd:visto')) document.documentElement.classList.add('sin-carga');
+         else sessionStorage.setItem('agd:visto', '1');
+      } catch (e) { /* Sin sessionStorage se ve siempre, que no es grave. */ }
+   </script>
+
    <!--
       Ficha del negocio para Google. Lo que decide si una ferretería sale
       cuando alguien busca "pinturas cerca" es que estos datos existan y
@@ -77,6 +86,31 @@
 </head>
 
 <body>
+
+   <!-- ── La brochada de entrada ───────────────────────────────
+        Se ve una sola vez por visita: la marca esta en sessionStorage,
+        así que al volver a la página no hay que esperarla otra vez.
+        Nadie quiere pagar hora y media de segundo cada vez que entra.
+
+        La cortina se va con una animación de CSS, no con JavaScript: si
+        el script fallara, una capa opaca a pantalla completa dejaría el
+        sitio inservible. Así se retira sola pase lo que pase. -->
+   <div class="carga" id="carga" aria-hidden="true">
+      <div class="carga__pieza">
+         <img class="carga__logo" src="images/logo.png" alt="" width="394" height="262">
+         <span class="carga__trazo"></span>
+         <svg class="carga__brocha" viewBox="0 0 40 70" aria-hidden="true">
+            <!-- mango -->
+            <rect x="15" y="0" width="10" height="30" rx="5" fill="#4A3B33" />
+            <!-- virola -->
+            <rect x="11" y="28" width="18" height="13" rx="2" fill="#B9BEC2" />
+            <rect x="11" y="33" width="18" height="2" fill="#8E969B" />
+            <!-- cerdas -->
+            <path d="M12 41 h16 l-1.5 16 q-6.5 3 -13 0 z" fill="#E8C79A" />
+            <path d="M12 41 h16 l-.6 6 h-14.8 z" fill="#D9B074" />
+         </svg>
+      </div>
+   </div>
 
    <a class="flotante" target="_blank" rel="noopener"
       aria-label="Escribir a Distribuciones AGD por WhatsApp"
@@ -261,18 +295,27 @@
                   piso, que además explica lo que se vende mejor que una foto de
                   archivo: un piso epóxico es un sistema por capas, no un balde.
                -->
-               <article class="frente frente--capas">
-                  <div class="capas">
-                     <div class="capa capa--sella"><span>Sellante</span></div>
-                     <div class="capa capa--acabado"><span>Acabado epóxico</span></div>
-                     <div class="capa capa--base"><span>Capa base</span></div>
-                     <div class="capa capa--imprima"><span>Imprimante</span></div>
-                     <div class="capa capa--losa"><span>Losa de concreto</span></div>
+               <!--
+                  En vez de contar la ventaja, se enseña: el piso empieza
+                  embaldosado, con sus juntas, y el epóxico pasa por encima y
+                  lo deja de una sola pieza. Es el argumento de venta entero
+                  en un gesto, y no hace falta ninguna foto.
+               -->
+               <article class="frente frente--piso">
+                  <div class="piso">
+                     <div class="piso__baldosas" aria-hidden="true"></div>
+                     <div class="piso__epoxico" aria-hidden="true">
+                        <span class="piso__brillo"></span>
+                     </div>
+                     <p class="piso__rotulo" aria-hidden="true">
+                        <span class="piso__antes">Con juntas</span>
+                        <span class="piso__despues">De una sola pieza</span>
+                     </p>
                   </div>
                   <div class="frente__texto">
                      <h3>Laboratorios y áreas limpias</h3>
-                     <p>Pisos epóxicos y recubrimientos lavables, resistentes a químicos y sin juntas donde
-                        se acumule suciedad.</p>
+                     <p>El piso queda de una sola pieza. No hay junta donde se meta el polvo ni donde se
+                        quede un químico derramado, y se lava a fondo sin que se marque.</p>
                   </div>
                </article>
             </div>
