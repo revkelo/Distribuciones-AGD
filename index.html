@@ -23,9 +23,17 @@
    <meta property="og:title" content="Distribuciones AGD · Pinturas y ferretería en Bogotá">
    <meta property="og:description"
       content="Pintuco, Sika, Corona, Soudal y ocho marcas más. Escríbenos y te pasamos precio y disponibilidad.">
-   <meta property="og:image" content="https://distribucionesagd.kgstudio.top/images/about_img.png">
+   <!-- 1200x630 es la medida que esperan WhatsApp y Facebook; con otra, el
+        recorte queda a su criterio. -->
+   <meta property="og:image" content="https://distribucionesagd.kgstudio.top/images/og.jpg">
+   <meta property="og:image:width" content="1200">
+   <meta property="og:image:height" content="630">
+   <meta property="og:image:type" content="image/jpeg">
+   <meta property="og:image:alt" content="Brocha cargada de pintura roja con el logo de Distribuciones AGD">
    <meta property="og:locale" content="es_CO">
    <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:image" content="https://distribucionesagd.kgstudio.top/images/og.jpg">
+   <meta name="twitter:image:alt" content="Brocha cargada de pintura roja con el logo de Distribuciones AGD">
 
    <link rel="icon" href="images/logo_footer.ico" type="image/x-icon">
 
@@ -35,15 +43,6 @@
       href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=DM+Mono:wght@400;500&display=swap"
       rel="stylesheet">
    <link rel="stylesheet" href="css/agd.css">
-
-   <!-- Va aquí, en línea y antes de pintar nada, para que quien ya vio la
-        brochada no alcance a verla parpadear al volver. -->
-   <script>
-      try {
-         if (sessionStorage.getItem('agd:visto')) document.documentElement.classList.add('sin-carga');
-         else sessionStorage.setItem('agd:visto', '1');
-      } catch (e) { /* Sin sessionStorage se ve siempre, que no es grave. */ }
-   </script>
 
    <!--
       Ficha del negocio para Google. Lo que decide si una ferretería sale
@@ -57,7 +56,8 @@
      "@id": "https://distribucionesagd.kgstudio.top/#negocio",
      "name": "Distribuciones AGD",
      "url": "https://distribucionesagd.kgstudio.top/",
-     "image": "https://distribucionesagd.kgstudio.top/images/logo.png",
+     "image": "https://distribucionesagd.kgstudio.top/images/og.jpg",
+     "logo": "https://distribucionesagd.kgstudio.top/images/logo.png",
      "description": "Distribución de pinturas, rodillos, brochas y artículos de ferretería para construcción, remodelación y decoración en Bogotá.",
      "email": "distribucionesagd1@gmail.com",
      "telephone": "+573118296138",
@@ -88,9 +88,9 @@
 <body>
 
    <!-- ── La brochada de entrada ───────────────────────────────
-        Se ve una sola vez por visita: la marca esta en sessionStorage,
-        así que al volver a la página no hay que esperarla otra vez.
-        Nadie quiere pagar hora y media de segundo cada vez que entra.
+        Se ve en cada carga de la página. No es tan caro como suena: los
+        enlaces del sitio son anclas a secciones, no cargas nuevas, así
+        que solo se paga al entrar o al recargar de verdad.
 
         La cortina se va con una animación de CSS, no con JavaScript: si
         el script fallara, una capa opaca a pantalla completa dejaría el
@@ -199,18 +199,18 @@
             </div>
 
             <div class="marcas">
-               <div class="marca"><img src="pinturas/10.png" alt="Pintuco" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/5.png" alt="Sika" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/7.png" alt="Pinturas Corona" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/2.png" alt="Soudal" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/12.png" alt="Pinturas Bler" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/8.png" alt="Pinturas Tonner" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/9.png" alt="ICO" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/4.png" alt="Topex" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/1.png" alt="Pintuland" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/6.png" alt="Kolor Glam Pinturas" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/3.png" alt="Supermastick PR" loading="lazy"></div>
-               <div class="marca"><img src="pinturas/11.png" alt="Pinturas Tito Pabón" loading="lazy"></div>
+               <div class="marca"><img src="pinturas/10.webp" alt="Pintuco" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/5.webp" alt="Sika" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/7.webp" alt="Pinturas Corona" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/2.webp" alt="Soudal" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/12.webp" alt="Pinturas Bler" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/8.webp" alt="Pinturas Tonner" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/9.webp" alt="ICO" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/4.webp" alt="Topex" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/1.webp" alt="Pintuland" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/6.webp" alt="Kolor Glam Pinturas" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/3.webp" alt="Supermastick PR" loading="lazy" width="666" height="209"></div>
+               <div class="marca"><img src="pinturas/11.webp" alt="Pinturas Tito Pabón" loading="lazy" width="666" height="209"></div>
             </div>
 
             <p class="marcas__lista">
@@ -235,26 +235,26 @@
 
             <div class="categorias">
                <article class="categoria">
-                  <div class="categoria__foto"><img src="articulos/2.png" alt="Latas de pintura abiertas en varios colores"
-                        loading="lazy"></div>
+                  <div class="categoria__foto"><img src="articulos/2.webp" alt="Latas de pintura abiertas en varios colores"
+                        loading="lazy" width="410" height="409"></div>
                   <h3>Pinturas y esmaltes</h3>
                   <p>Vinilos, esmaltes, anticorrosivos y estucos, por galón o cuñete.</p>
                </article>
                <article class="categoria">
-                  <div class="categoria__foto"><img src="articulos/6.png" alt="Brochas y rodillos de varios tamaños"
-                        loading="lazy"></div>
+                  <div class="categoria__foto"><img src="articulos/6.webp" alt="Brochas y rodillos de varios tamaños"
+                        loading="lazy" width="410" height="409"></div>
                   <h3>Brochas y rodillos</h3>
                   <p>Felpas, brochas y extensiones para cada tipo de superficie.</p>
                </article>
                <article class="categoria">
-                  <div class="categoria__foto"><img src="articulos/5.png"
-                        alt="Bandejas, cintas de enmascarar y guantes" loading="lazy"></div>
+                  <div class="categoria__foto"><img src="articulos/5.webp"
+                        alt="Bandejas, cintas de enmascarar y guantes" loading="lazy" width="410" height="409"></div>
                   <h3>Cintas y protección</h3>
                   <p>Bandejas, cintas de enmascarar, plásticos y guantes.</p>
                </article>
                <article class="categoria">
-                  <div class="categoria__foto"><img src="articulos/8.png"
-                        alt="Brochas junto a una carta de colores" loading="lazy"></div>
+                  <div class="categoria__foto"><img src="articulos/8.webp"
+                        alt="Brochas junto a una carta de colores" loading="lazy" width="410" height="409"></div>
                   <h3>Asesoría de color</h3>
                   <p>Te ayudamos a escoger el tono y a calcular cuánta pintura necesitas.</p>
                </article>
@@ -283,10 +283,10 @@
             <div class="frentes">
                <article class="frente">
                   <div class="frente__mosaico">
-                     <img src="images/service_img1.png" alt="Cocina con muebles lacados en rojo" loading="lazy">
-                     <img src="images/service_img2.png" alt="Cocina y comedor en tonos claros" loading="lazy">
-                     <img src="images/service_img3.png" alt="Lámparas colgantes sobre pared cálida" loading="lazy">
-                     <img src="images/service_img4.png" alt="Cocina clásica con isla y mesón en granito" loading="lazy">
+                     <img src="images/service_img1.webp" alt="Cocina con muebles lacados en rojo" loading="lazy" width="410" height="409">
+                     <img src="images/service_img2.webp" alt="Cocina y comedor en tonos claros" loading="lazy" width="410" height="409">
+                     <img src="images/service_img3.webp" alt="Lámparas colgantes sobre pared cálida" loading="lazy" width="410" height="409">
+                     <img src="images/service_img4.webp" alt="Cocina clásica con isla y mesón en granito" loading="lazy" width="410" height="409">
                   </div>
                   <div class="frente__texto">
                      <h3>Acabados y decoración</h3>
@@ -309,14 +309,14 @@
                   en un gesto, y no hace falta ninguna foto.
                -->
                <article class="frente frente--piso">
-                  <div class="piso">
-                     <div class="piso__baldosas" aria-hidden="true"></div>
-                     <div class="piso__epoxico" aria-hidden="true">
-                        <span class="piso__brillo"></span>
-                     </div>
-                     <p class="piso__rotulo" aria-hidden="true">
-                        <span class="piso__antes">Con juntas</span>
-                        <span class="piso__despues">De una sola pieza</span>
+                  <div class="piso" aria-hidden="true">
+                     <span class="piso__gota"></span>
+                     <span class="piso__mancha"><i></i></span>
+                     <span class="piso__trapo"></span>
+                     <span class="piso__brillo"></span>
+                     <p class="piso__rotulo">
+                        <span class="piso__antes">Se derrama</span>
+                        <span class="piso__despues">No queda marca</span>
                      </p>
                   </div>
                   <div class="frente__texto">
@@ -360,7 +360,7 @@
             </div>
 
             <div class="nosotros__foto">
-               <img src="images/about_img.png" alt="Pintor aplicando pintura roja con rodillo" loading="lazy">
+               <img src="images/about_img.webp" alt="Pintor aplicando pintura roja con rodillo" loading="lazy" width="828" height="425">
             </div>
          </div>
       </section>
@@ -388,7 +388,7 @@
       <div class="envoltura">
          <div class="pie__rejilla">
             <div>
-               <img class="pie__logo" src="images/logo.png" alt="Distribuciones AGD SAS">
+               <img class="pie__logo" src="images/logo.png" alt="Distribuciones AGD SAS" width="394" height="262">
                <p>Pinturas, rodillos, brochas y artículos de ferretería para construcción, remodelación y
                   decoración.</p>
             </div>

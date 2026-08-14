@@ -453,11 +453,10 @@ p { margin: 0; }
 .frente__texto h3 { margin-bottom: 0.45rem; }
 .frente__texto p { color: var(--tinta-70); font-size: 0.98rem; }
 
-/* ── El piso, antes y después ────────────────────────────────
-   La tarjeta no dice que el epóxico quita las juntas: lo hace. El
-   panel empieza embaldosado y el recubrimiento cruza por encima
-   dejándolo continuo, en el mismo sentido que la brocha de la
-   entrada. Todo con degradados, sin una sola imagen.
+/* ── El derrame ──────────────────────────────────────────────
+   La tarjeta no dice que el piso aguanta: lo enseña. Cae una gota
+   de químico, se abre la mancha, pasa el trapo y el piso queda
+   igual que antes. Es la frase del texto, en movimiento.
 
    Arranca cuando la tarjeta entra en pantalla (`.esta`), no al
    cargar: si no, pasa cuando nadie está mirando. */
@@ -467,54 +466,107 @@ p { margin: 0; }
   flex: 1;
   min-height: 300px;
   overflow: hidden;
-  background: #CFC7BC;
+  /* Piso continuo, sin una sola línea: es el argumento de fondo. */
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.5), transparent 60%),
+    linear-gradient(170deg, #9FB3BC, #7E97A2 55%, #6B848F);
 }
 
-/* Las juntas, con su sombra: es donde se acumula lo que no se quiere. */
-.piso__baldosas {
+/* La gota, cayendo. */
+.piso__gota {
   position: absolute;
-  inset: 0;
-  background-color: #CFC7BC;
-  background-image:
-    linear-gradient(to right, rgba(58, 46, 38, 0.55) 3px, transparent 3px),
-    linear-gradient(to bottom, rgba(58, 46, 38, 0.55) 3px, transparent 3px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
-  background-size: 52px 52px, 52px 52px, 52px 52px;
-  background-position: 4px 4px, 4px 4px, 6px 6px;
+  top: -12%;
+  left: 50%;
+  width: 15px;
+  height: 21px;
+  margin-left: -7px;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  background: #2E2A21;
+  opacity: 0;
 }
 
-.piso__epoxico {
+.frente--piso.esta .piso__gota { animation: piso-gota 0.5s cubic-bezier(0.6, 0, 0.9, 0.4) 0.3s forwards; }
+
+@keyframes piso-gota {
+  0%   { top: -12%; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 52%; opacity: 0; transform: scaleY(0.55); }
+}
+
+/* La mancha. El recorte por la izquierda es lo que la borra a medida
+   que pasa el trapo: se van juntos, así que parece que el trapo se la
+   lleva por delante en vez de desaparecer sola. */
+.piso__mancha {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(155deg, #35866A, #24614A 62%, #1E5240);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 1.15s cubic-bezier(0.55, 0, 0.35, 1) 0.35s;
+  top: 50%;
+  left: 50%;
+  width: 46%;
+  height: 26%;
+  transform: translate(-50%, -30%);
+  clip-path: inset(0 0 0 0);
 }
 
-.frente--piso.esta .piso__epoxico { transform: scaleX(1); }
+.piso__mancha i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(60% 70% at 45% 45%, rgba(46,42,33,0.92), rgba(46,42,33,0.55) 70%, transparent 78%);
+  border-radius: 52% 48% 44% 56% / 58% 42% 58% 42%;
+  transform: scale(0.2);
+  opacity: 0;
+}
 
-/* El brillo que delata una superficie sellada. Cruza una vez, cuando
-   el recubrimiento ya cubrió: es el acabado, no un adorno suelto. */
+.frente--piso.esta .piso__mancha i { animation: piso-mancha 0.45s cubic-bezier(0.2, 0.8, 0.3, 1) 0.74s forwards; }
+.frente--piso.esta .piso__mancha { animation: piso-borrar 0.85s linear 1.45s forwards; }
+
+@keyframes piso-mancha {
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes piso-borrar {
+  to { clip-path: inset(0 0 0 100%); }
+}
+
+/* El trapo: una franja clara con el filo suave, del ancho del panel. */
+.piso__trapo {
+  position: absolute;
+  top: -10%;
+  left: -34%;
+  width: 30%;
+  height: 120%;
+  background: linear-gradient(95deg, rgba(255,255,255,0), rgba(255,255,255,0.42) 45%, rgba(255,255,255,0.12));
+  transform: skewX(-9deg);
+  opacity: 0;
+}
+
+.frente--piso.esta .piso__trapo { animation: piso-trapo 0.95s cubic-bezier(0.4, 0, 0.5, 1) 1.4s forwards; }
+
+@keyframes piso-trapo {
+  0%   { left: -34%; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { left: 106%; opacity: 0; }
+}
+
+/* El brillo del final: la superficie sellada, ya limpia. */
 .piso__brillo {
   position: absolute;
-  top: -30%;
-  left: -40%;
-  width: 34%;
-  height: 160%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  top: -20%;
+  left: -30%;
+  width: 26%;
+  height: 150%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.3), transparent);
   transform: skewX(-16deg);
   opacity: 0;
 }
 
-.frente--piso.esta .piso__brillo {
-  animation: piso-brillo 1.1s ease-out 1.5s forwards;
-}
+.frente--piso.esta .piso__brillo { animation: piso-brillo 1s ease-out 2.5s forwards; }
 
 @keyframes piso-brillo {
-  from { left: -40%; opacity: 0; }
+  0%   { left: -30%; opacity: 0; }
   30%  { opacity: 1; }
-  to   { left: 120%; opacity: 0; }
+  100% { left: 118%; opacity: 0; }
 }
 
 .piso__rotulo {
@@ -530,11 +582,8 @@ p { margin: 0; }
 
 .piso__rotulo span {
   display: block;
-  transition: opacity 0.4s ease;
-}
-
-.piso__antes {
-  color: rgba(38, 30, 24, 0.75);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(20, 26, 30, 0.45);
 }
 
 .piso__despues {
@@ -542,16 +591,22 @@ p { margin: 0; }
   left: 0;
   bottom: 0;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.92);
   opacity: 0;
 }
 
-.frente--piso.esta .piso__antes { opacity: 0; transition-delay: 0.9s; }
-.frente--piso.esta .piso__despues { opacity: 1; transition-delay: 1.1s; }
+/* Con `transition` el relevo dependía de que el navegador pintara un
+   cuadro justo entre que se añade la clase y el cambio de opacidad; si
+   no coincidía, el rótulo se quedaba en el primero. Con `animation` y
+   `forwards` corre siempre, y llega al mismo sitio. */
+.frente--piso.esta .piso__antes { animation: piso-rotulo-sale 0.45s ease 1.9s forwards; }
+.frente--piso.esta .piso__despues { animation: piso-rotulo-entra 0.45s ease 2.15s forwards; }
+
+@keyframes piso-rotulo-sale { to { opacity: 0; } }
+@keyframes piso-rotulo-entra { to { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Sin movimiento se enseña el resultado, que es lo que importa. */
-  .piso__epoxico { transform: scaleX(1); }
+  /* Sin movimiento se enseña el final: el piso limpio. */
+  .piso__gota, .piso__mancha, .piso__trapo, .piso__brillo { display: none; }
   .piso__antes { opacity: 0; }
   .piso__despues { opacity: 1; }
 }
@@ -601,7 +656,7 @@ p { margin: 0; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: url("../articulos/4.png") center 40% / cover no-repeat;
+  background: url("../articulos/4.webp") center 40% / cover no-repeat;
   opacity: 0.32;
 }
 
@@ -770,8 +825,8 @@ html { scroll-behavior: smooth; }
    llega al borde, aparece la marca y la pintura se levanta dejando
    la página debajo.
 
-   Se ve una sola vez por visita: la marca queda en sessionStorage.
-   Nadie quiere pagar la espera cada vez que entra.
+   Se ve en cada carga. Los enlaces internos son anclas, así que en la
+   práctica solo aparece al entrar o al recargar.
 
    El tiempo lo lleva CSS de principio a fin. El JavaScript solo
    apunta que ya se vio; si no corriera, la cortina se retira igual.
@@ -790,8 +845,6 @@ html { scroll-behavior: smooth; }
 @keyframes carga-levantar {
   to { transform: translateY(-102%); }
 }
-
-.sin-carga .carga { display: none; }
 
 /* Cada pasada cubre una quinta parte de alto, con un pelo de más para
    que no se vea la costura entre una y otra. */
@@ -871,4 +924,37 @@ html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {
   .carga { display: none; }
+}
+
+/* ── Detalles de táctil ──────────────────────────────────────
+   En un teléfono no hay `:hover`, así que todo lo que responde al
+   ratón no responde a nada. Estos estados son los que dan la
+   sensación de que el botón "hizo algo" al tocarlo. */
+
+.boton, .marca, .frente, .categoria, .flotante, .cabecera__logo, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.boton:active { transform: translateY(1px) scale(0.985); }
+.flotante:active { transform: scale(0.94); }
+.marca:active { background: var(--yeso); }
+
+/* Las fotos declaran su tamaño en el HTML para que no salte la página
+   mientras cargan; aquí se les devuelve la flexibilidad. */
+.marca img, .categoria__foto img, .frente__mosaico img,
+.nosotros__foto img, .cabecera__logo img, .pie__logo, .carga__logo {
+  height: auto;
+}
+
+.categoria__foto img { height: 100%; }
+.cabecera__logo img { height: 46px; }
+.pie__logo { height: 62px; }
+
+@media (max-width: 560px) {
+  /* A dos columnas el texto de cada categoría queda en columnas muy
+     estrechas; un punto menos y una interlínea más corta lo cuadran. */
+  .categoria p { font-size: 0.9rem; line-height: 1.5; }
+  .categoria h3 { font-size: 1.02rem; }
+  /* El panel del piso no necesita tanto alto en vertical. */
+  .piso { min-height: 240px; }
 }
