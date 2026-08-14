@@ -253,7 +253,7 @@ p { margin: 0; }
   letter-spacing: 0.06em;
   transition: transform 0.35s cubic-bezier(0.22, 0.7, 0.25, 1);
   /* El abanico se abre al cargar, cerrado primero y desplegado después. */
-  animation: abrir 0.9s cubic-bezier(0.22, 0.7, 0.25, 1) backwards;
+  animation: abrir 0.6s cubic-bezier(0.22, 0.7, 0.25, 1) backwards;
 }
 
 @keyframes abrir {
@@ -957,4 +957,97 @@ html { scroll-behavior: smooth; }
   .categoria h3 { font-size: 1.02rem; }
   /* El panel del piso no necesita tanto alto en vertical. */
   .piso { min-height: 240px; }
+}
+
+/* ── La entrada de la portada ────────────────────────────────
+   Todo lo de aquí abajo arranca DESPUÉS de que la pintura se
+   levanta (1,62 s + 0,5 s de recorrido). Antes el abanico se
+   desplegaba entre los 0,05 y los 0,4 s, es decir, entero detrás
+   de la cortina: la animación firma de la página no la veía
+   nadie. Ahora entra cuando hay alguien mirando. */
+
+:root { --entra: 1.95s; }
+
+.portada__linea {
+  opacity: 0;
+  animation: portada-sube 0.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes portada-sube {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.portada .rotulo          { animation-delay: var(--entra); }
+.portada h1               { animation-delay: calc(var(--entra) + 0.09s); }
+.portada .entradilla      { animation-delay: calc(var(--entra) + 0.18s); }
+.portada .portada__acciones { animation-delay: calc(var(--entra) + 0.27s); }
+
+/* El abanico, después del texto: primero se lee qué se vende. */
+.muestra:nth-child(1) { animation-delay: calc(var(--entra) + 0.26s); }
+.muestra:nth-child(2) { animation-delay: calc(var(--entra) + 0.32s); }
+.muestra:nth-child(3) { animation-delay: calc(var(--entra) + 0.38s); }
+.muestra:nth-child(4) { animation-delay: calc(var(--entra) + 0.44s); }
+.muestra:nth-child(5) { animation-delay: calc(var(--entra) + 0.50s); }
+.muestra:nth-child(6) { animation-delay: calc(var(--entra) + 0.56s); }
+
+/* El remache aparece con la primera aspa, no antes. */
+.carta::after {
+  opacity: 0;
+  animation: carta-remache 0.28s ease calc(var(--entra) + 0.52s) forwards;
+}
+
+@keyframes carta-remache {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* El botón flotante llega al final, con un rebote corto: es lo último
+   que aparece y lo que queremos que se mire. */
+.flotante {
+  opacity: 0;
+  animation: flotante-entra 0.5s cubic-bezier(0.2, 1.5, 0.4, 1) calc(var(--entra) + 0.75s) forwards;
+}
+
+@keyframes flotante-entra {
+  from { opacity: 0; transform: scale(0.3); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Sin cortina no hay nada que esperar: si se dejaran los retrasos, la
+     portada estaría dos segundos en blanco. */
+  :root { --entra: 0s; }
+  .portada__linea, .carta::after, .flotante { opacity: 1; animation: none; }
+}
+
+/* ── Cabecera en móvil ───────────────────────────────────────
+   Sin el NIT ni el correo, que no caben, la marca se quedaba
+   arrinconada a la izquierda con media barra vacía al lado. En
+   vertical la barra es solo la marca, así que va centrada y algo
+   más grande: es lo primero que se ve y lo único que hay. */
+
+@media (max-width: 560px) {
+  .cabecera__fila { justify-content: center; min-height: 84px; }
+  .cabecera__logo { display: block; }
+  .cabecera__logo img { height: 58px; }
+  .cabecera.bajado .cabecera__fila { min-height: 64px; }
+  .cabecera.bajado .cabecera__logo img { height: 44px; }
+
+  /* Una línea de color al pie de la barra: es la misma carta de
+     colores de la página, reducida a un filo. */
+  .cabecera::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    background: linear-gradient(
+      to right,
+      var(--chip-1) 0 16.66%, var(--chip-2) 16.66% 33.33%,
+      var(--chip-3) 33.33% 50%,  var(--chip-4) 50% 66.66%,
+      var(--chip-5) 66.66% 83.33%, var(--chip-6) 83.33% 100%
+    );
+  }
 }
