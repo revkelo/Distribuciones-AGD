@@ -147,7 +147,11 @@ p { margin: 0; }
   min-height: 74px;
 }
 
-.cabecera__logo img { height: 54px; width: auto; }
+/* El PNG original era un lienzo de 500×500 con el logo de 394×262 flotando
+   en medio y transparencia alrededor: al fijarle alto, más de la mitad de
+   la medida era aire y la marca se veía diminuta. `logo.png` va recortado
+   a su caja real, así que este alto es el que se ve. */
+.cabecera__logo img { height: 46px; width: auto; }
 
 .cabecera__datos {
   display: flex;
@@ -183,7 +187,7 @@ p { margin: 0; }
 
 .portada__rejilla {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
 }
@@ -299,7 +303,7 @@ p { margin: 0; }
 
 .marcas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(178px, 100%), 1fr));
   gap: 1px;
   background: var(--linea);
   border: 1px solid var(--linea);
@@ -380,11 +384,90 @@ p { margin: 0; }
 
 .categoria p { margin-top: 0.45rem; color: var(--tinta-70); font-size: 0.96rem; }
 
+/* ── Dos frentes ─────────────────────────────────────────────
+   Acabados y obra no se ilustran igual: la decoración se entiende
+   con varios ambientes, y la obra con una sola foto grande donde
+   se vea la escala. Por eso un mosaico contra una foto entera. */
+
+.frentes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.frente {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.frente:hover { border-color: var(--rojo); transform: translateY(-3px); }
+
+/* Los interiores vienen recortados en círculo con las esquinas
+   transparentes: puestos en cuadrícula asomaba el fondo por los picos.
+   Van en círculo, que además es la forma que ya usan las categorías. */
+.frente__mosaico {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+  padding: 1.75rem 1.75rem 0.5rem;
+  flex: 1;
+  align-content: center;
+}
+
+.frente__mosaico img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px var(--muro), 0 0 0 5px var(--linea);
+  transition: transform 0.3s ease;
+}
+
+.frente:hover .frente__mosaico img { transform: scale(1.03); }
+
+.frente__texto { padding: 1.5rem 1.75rem 1.75rem; }
+.frente__texto h3 { margin-bottom: 0.45rem; }
+.frente__texto p { color: var(--tinta-70); font-size: 0.98rem; }
+
+/* La de obra es la única foto grande de la página. El rojo viene quemado
+   en el archivo original, así que en vez de disimularlo se aprovecha: es
+   el mismo rojo de la marca, y encima va el texto en blanco. */
+.frente--obra { position: relative; min-height: 380px; }
+
+.frente--obra .frente__foto {
+  position: absolute;
+  inset: 0;
+}
+
+.frente--obra .frente__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.frente--obra:hover .frente__foto img { transform: scale(1.04); }
+
+.frente--obra .frente__texto {
+  position: relative;
+  margin-top: auto;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(16,10,9,0.55) 30%, rgba(16,10,9,0.88));
+  padding-top: 4rem;
+}
+
+.frente--obra .frente__texto p { color: rgba(255,255,255,0.88); }
+
 /* ── Nosotros ────────────────────────────────────────────── */
 
 .nosotros {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: clamp(2rem, 5vw, 3.5rem);
   align-items: center;
 }
@@ -479,20 +562,33 @@ p { margin: 0; }
   .portada__rejilla > .carta { order: 2; }
   .pie__rejilla { grid-template-columns: 1fr 1fr; }
   .cabecera__datos .cabecera__dato--largo { display: none; }
+  .frentes { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
   body { font-size: 16px; }
   .pie__rejilla { grid-template-columns: 1fr; }
   .cabecera__datos { display: none; }
-  .categorias { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .categorias { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; }
   .categoria__foto { width: min(150px, 100%); }
   .boton { width: 100%; justify-content: center; }
   /* `auto-fill` con mínimo de 178px daba una sola columna en un teléfono:
      doce logos a pantalla completa, uno debajo de otro. De a dos se
      recorren de un vistazo, que es para lo que están. */
-  .marcas { grid-template-columns: 1fr 1fr; }
+  /* `1fr` no baja del ancho minimo del contenido: con logos anchos las
+     columnas se pasaban de la caja y el grid desbordaba 16 px. */
+  .marcas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .marca { padding: 0.9rem; }
+  .frentes { grid-template-columns: 1fr; }
+}
+
+/* Un aspa de 215 px girada 45 grados ocupa 172 px de ancho desde el eje:
+   en un telefono de 320 el abanico se salia 20 px por cada lado. Aqui va
+   mas corto y estrecho, que es lo mismo a otra escala. */
+@media (max-width: 420px) {
+  .carta { height: 250px; }
+  .muestra { width: 48px; height: 168px; bottom: 26px; font-size: 0.6rem; padding-top: 0.6rem; }
+  .carta::after { width: 20px; height: 20px; bottom: 17px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
