@@ -321,6 +321,9 @@ p { margin: 0; }
    es la respuesta. */
 
 .marcas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(178px, 100%), 1fr));
   gap: 1px;
@@ -330,17 +333,45 @@ p { margin: 0; }
 
 .marca {
   background: #fff;
-  aspect-ratio: 16 / 7;
-  display: grid;
-  place-items: center;
-  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.1rem 0.9rem;
   transition: background-color 0.2s ease;
 }
 
+/* El logo manda en la celda y el nombre va debajo, en el mono de los
+   rótulos: leerlo confirma lo que la imagen ya dijo, y sirve para las
+   marcas cuyo logo no lleva el nombre escrito. */
+.marca__logo {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 62px;
+}
+
+.marca__nombre {
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--linea);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--tinta-70);
+  transition: color 0.2s ease;
+}
+
+.marca:hover .marca__nombre { color: var(--rojo); }
+
 /* A todo color, no en gris hasta el hover. Lo que trae al cliente es
-   reconocer su marca de un vistazo: apagarlas es apagar el argumento. */
+   reconocer su marca de un vistazo: apagarlas es apagar el argumento.
+
+   El tope de alto iguala la pared: unos logos vienen como marca suelta
+   sobre blanco y otros como rectangulo con su propio fondo de color, y
+   sin tope estos ultimos se comian la celda. */
 .marca img {
-  max-height: 100%;
+  max-height: 52px;
+  max-width: 100%;
   width: auto;
   object-fit: contain;
   transition: transform 0.25s ease;
@@ -803,16 +834,6 @@ html { scroll-behavior: smooth; }
    Bajaron de la portada, donde competían con el titular, a su
    sitio natural: debajo de los logos. Un logo es una imagen y no
    se puede buscar; el nombre escrito sí. */
-
-.marcas__lista {
-  margin-top: 1.5rem;
-  font-family: var(--mono);
-  font-size: 0.84rem;
-  line-height: 2;
-  color: var(--tinta-70);
-}
-
-.marcas__lista strong { color: var(--tinta); font-weight: 500; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
