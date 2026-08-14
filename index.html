@@ -96,20 +96,27 @@
         el script fallara, una capa opaca a pantalla completa dejaría el
         sitio inservible. Así se retira sola pase lo que pase. -->
    <div class="carga" id="carga" aria-hidden="true">
-      <div class="carga__pieza">
-         <img class="carga__logo" src="images/logo.png" alt="" width="394" height="262">
-         <span class="carga__trazo"></span>
-         <svg class="carga__brocha" viewBox="0 0 40 70" aria-hidden="true">
-            <!-- mango -->
-            <rect x="15" y="0" width="10" height="30" rx="5" fill="#4A3B33" />
-            <!-- virola -->
-            <rect x="11" y="28" width="18" height="13" rx="2" fill="#B9BEC2" />
-            <rect x="11" y="33" width="18" height="2" fill="#8E969B" />
-            <!-- cerdas -->
-            <path d="M12 41 h16 l-1.5 16 q-6.5 3 -13 0 z" fill="#E8C79A" />
-            <path d="M12 41 h16 l-.6 6 h-14.8 z" fill="#D9B074" />
-         </svg>
-      </div>
+      <!-- Cinco pasadas que cubren la pantalla entera, en zigzag: la primera
+           de izquierda a derecha, la siguiente de vuelta, como se pinta una
+           pared de verdad. Cuando termina, la pintura se levanta y debajo
+           está la página. -->
+      <span class="carga__pasada"></span>
+      <span class="carga__pasada"></span>
+      <span class="carga__pasada"></span>
+      <span class="carga__pasada"></span>
+      <span class="carga__pasada"></span>
+
+      <img class="carga__logo" src="images/logo.png" alt="" width="394" height="262">
+
+      <svg class="carga__brocha" viewBox="0 0 74 116" aria-hidden="true">
+         <rect x="28" y="0" width="18" height="52" rx="9" fill="#4A3B33" />
+         <rect x="26" y="12" width="22" height="4" rx="2" fill="#3A2E28" opacity=".5" />
+         <rect x="21" y="49" width="32" height="22" rx="3" fill="#C3C8CC" />
+         <rect x="21" y="57" width="32" height="3" fill="#98A0A5" />
+         <path d="M20 71 h34 l-3 30 q-14 6 -28 0 z" fill="#E8C79A" />
+         <path d="M20 71 h34 l-1 10 h-32 z" fill="#D9B074" />
+         <path d="M22 96 q13 6 30 0 l-1 8 q-14 6 -28 0 z" fill="#C01F24" />
+      </svg>
    </div>
 
    <a class="flotante" target="_blank" rel="noopener"
@@ -228,7 +235,7 @@
 
             <div class="categorias">
                <article class="categoria">
-                  <div class="categoria__foto"><img src="articulos/3.png" alt="Latas de pintura de varios colores"
+                  <div class="categoria__foto"><img src="articulos/2.png" alt="Latas de pintura abiertas en varios colores"
                         loading="lazy"></div>
                   <h3>Pinturas y esmaltes</h3>
                   <p>Vinilos, esmaltes, anticorrosivos y estucos, por galón o cuñete.</p>

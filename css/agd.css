@@ -290,7 +290,26 @@ p { margin: 0; }
 /* ── Secciones ───────────────────────────────────────────── */
 
 .seccion { padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
-.seccion--yeso { background: var(--yeso); }
+.seccion--yeso {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--yeso);
+}
+
+/* Textura de papel, muy por debajo del umbral de atención: le quita a la
+   banda la sensación de bloque de color plano y nada más. Va en una capa
+   propia para poder graduarla; mezclada en el fondo se veían las volutas
+   y parecía papel de regalo. */
+.seccion--yeso::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("../images/service_bg.jpg") center / 1100px auto repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+  pointer-events: none;
+}
 
 .seccion__cabeza { max-width: 60ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
 .seccion__cabeza h2 { margin: 0.6rem 0 0.9rem; }
@@ -565,10 +584,34 @@ p { margin: 0; }
 /* ── Llamada final ───────────────────────────────────────── */
 
 .cierre {
-  background: var(--rojo);
+  position: relative;
+  isolation: isolate;
+  background-color: var(--rojo);
   color: #fff;
   padding: clamp(3.5rem, 7vw, 5rem) 0;
   text-align: center;
+  overflow: hidden;
+}
+
+/* La brocha cargada de pintura, debajo del rojo. La foto viene recortada
+   en circulo, pero al recortarla a una franja ancha se ve solo la parte
+   central, que es opaca — y donde asome la transparencia hay rojo igual. */
+.cierre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("../articulos/4.png") center 40% / cover no-repeat;
+  opacity: 0.32;
+}
+
+/* Un velo para que el texto no pelee con la foto. */
+.cierre::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(192,31,36,0.72), rgba(142,21,25,0.88));
 }
 
 .cierre h2 { max-width: 18ch; margin: 0.75rem auto 1rem; }
@@ -722,83 +765,110 @@ html { scroll-behavior: smooth; }
 }
 
 /* ── La brochada de entrada ──────────────────────────────────
-   Una brocha cruza y deja el trazo bajo la marca. Dura poco más de
-   un segundo y se ve una vez por visita: es un saludo, no un peaje.
+   Cinco pasadas de brocha cubren la pantalla entera en zigzag —de
+   ida, de vuelta, de ida— como se pinta una pared. Cuando la última
+   llega al borde, aparece la marca y la pintura se levanta dejando
+   la página debajo.
 
-   Todo el tiempo lo lleva CSS. El JavaScript solo apunta que ya se
-   vio; si no corriera, la cortina se retira igual. */
+   Se ve una sola vez por visita: la marca queda en sessionStorage.
+   Nadie quiere pagar la espera cada vez que entra.
+
+   El tiempo lo lleva CSS de principio a fin. El JavaScript solo
+   apunta que ya se vio; si no corriera, la cortina se retira igual.
+   Una capa opaca a pantalla completa que dependa de un script es la
+   forma más fácil de dejar un sitio inservible. */
 
 .carga {
   position: fixed;
   inset: 0;
   z-index: 200;
+  overflow: hidden;
   background: var(--muro);
-  display: grid;
-  place-items: center;
-  animation: carga-salir 0.5s cubic-bezier(0.5, 0, 0.75, 0) 1.15s forwards;
+  animation: carga-levantar 0.5s cubic-bezier(0.7, 0, 0.3, 1) 1.2s forwards;
 }
 
-@keyframes carga-salir {
-  to { opacity: 0; visibility: hidden; }
+@keyframes carga-levantar {
+  to { transform: translateY(-102%); }
 }
 
-/* Quien ya la vio en esta visita entra directo. */
 .sin-carga .carga { display: none; }
 
-.carga__pieza {
-  position: relative;
-  width: min(280px, 62vw);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.carga__logo {
-  width: 62%;
-  height: auto;
-  opacity: 0;
-  animation: carga-logo 0.45s ease 0.1s forwards;
-}
-
-@keyframes carga-logo {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* El trazo crece de izquierda a derecha: es la pintura que va quedando. */
-.carga__trazo {
-  margin-top: 1.1rem;
+/* Cada pasada cubre una quinta parte de alto, con un pelo de más para
+   que no se vea la costura entre una y otra. */
+.carga__pasada {
+  position: absolute;
+  left: 0;
   width: 100%;
-  height: 16px;
-  border-radius: 3px;
-  background: var(--rojo);
+  height: 20.6%;
+  background-color: var(--rojo);
+  /* La veta de las cerdas: finísima, solo para que no parezca un bloque. */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.055) 0 2px,
+    transparent 2px 9px
+  );
   transform: scaleX(0);
-  transform-origin: left center;
-  animation: carga-trazo 0.75s cubic-bezier(0.55, 0, 0.35, 1) 0.25s forwards;
+  animation: carga-pasada 0.16s linear forwards;
 }
 
-@keyframes carga-trazo {
+@keyframes carga-pasada {
   to { transform: scaleX(1); }
 }
 
-/* La brocha va en la punta del trazo, y por eso recorre el mismo ancho
-   en el mismo tiempo y con la misma curva. Si no coincidieran, se vería
-   pintando donde no hay pintura. */
+.carga__pasada:nth-child(1) { top: 0;    transform-origin: left center;  animation-delay: 0s; }
+.carga__pasada:nth-child(2) { top: 20%;  transform-origin: right center; animation-delay: 0.17s; }
+.carga__pasada:nth-child(3) { top: 40%;  transform-origin: left center;  animation-delay: 0.35s; }
+.carga__pasada:nth-child(4) { top: 60%;  transform-origin: right center; animation-delay: 0.52s; }
+.carga__pasada:nth-child(5) { top: 80%;  transform-origin: left center;  animation-delay: 0.69s; }
+
+/* La brocha va justo en el borde de la pasada que está cubriendo, y por
+   eso comparte duración y curva con ella: si no, se vería pintando donde
+   ya hay pintura, o al revés. */
 .carga__brocha {
   position: absolute;
-  bottom: -14px;
+  top: 0;
   left: 0;
-  width: 30px;
-  height: 52px;
-  transform: translateX(-14px) rotate(-14deg);
-  animation: carga-brocha 0.75s cubic-bezier(0.55, 0, 0.35, 1) 0.25s forwards;
+  width: 58px;
+  height: 92px;
+  z-index: 3;
+  filter: drop-shadow(0 10px 16px rgba(26, 22, 20, 0.3));
+  transform: translate(-14vw, calc(10vh - 46px)) rotate(7deg);
+  animation: carga-brocha 0.87s linear forwards;
 }
 
 @keyframes carga-brocha {
-  to { transform: translateX(calc(min(280px, 62vw) - 14px)) rotate(-14deg); }
+  0%   { transform: translate(-14vw, calc(10vh - 46px)) rotate(7deg); }
+  18%  { transform: translate(100vw, calc(10vh - 46px)) rotate(7deg); }
+  21%  { transform: translate(100vw, calc(30vh - 46px)) rotate(-7deg); }
+  39%  { transform: translate(-14vw, calc(30vh - 46px)) rotate(-7deg); }
+  42%  { transform: translate(-14vw, calc(50vh - 46px)) rotate(7deg); }
+  59%  { transform: translate(100vw, calc(50vh - 46px)) rotate(7deg); }
+  62%  { transform: translate(100vw, calc(70vh - 46px)) rotate(-7deg); }
+  79%  { transform: translate(-14vw, calc(70vh - 46px)) rotate(-7deg); }
+  82%  { transform: translate(-14vw, calc(90vh - 46px)) rotate(7deg); }
+  99%  { transform: translate(100vw, calc(90vh - 46px)) rotate(7deg); opacity: 1; }
+  100% { transform: translate(100vw, calc(90vh - 46px)) rotate(7deg); opacity: 0; }
+}
+
+/* La marca aparece cuando la pared ya está pintada, no antes. */
+.carga__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: min(260px, 56vw);
+  height: auto;
+  opacity: 0;
+  /* Blanco sobre el rojo: el PNG viene en rojo y ahí se perdería. */
+  filter: brightness(0) invert(1);
+  transform: translate(-50%, -50%) scale(0.94);
+  animation: carga-logo 0.4s cubic-bezier(0.2, 0.8, 0.3, 1) 0.88s forwards;
+}
+
+@keyframes carga-logo {
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Sin animación no hay nada que enseñar: se salta entera. */
   .carga { display: none; }
 }
