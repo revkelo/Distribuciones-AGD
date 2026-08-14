@@ -391,8 +391,8 @@ p { margin: 0; }
 
 .frentes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.4vw, 1.75rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 .frente {
@@ -434,34 +434,8 @@ p { margin: 0; }
 .frente__texto h3 { margin-bottom: 0.45rem; }
 .frente__texto p { color: var(--tinta-70); font-size: 0.98rem; }
 
-/* La de obra es la única foto grande de la página. El rojo viene quemado
-   en el archivo original, así que en vez de disimularlo se aprovecha: es
-   el mismo rojo de la marca, y encima va el texto en blanco. */
-.frente--foto { position: relative; min-height: 380px; }
-
-.frente--foto .frente__foto {
-  position: absolute;
-  inset: 0;
-}
-
-.frente--foto .frente__foto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.frente--foto:hover .frente__foto img { transform: scale(1.04); }
-
-.frente--foto .frente__texto {
-  position: relative;
-  margin-top: auto;
-  color: #fff;
-  background: linear-gradient(transparent, rgba(16,10,9,0.55) 30%, rgba(16,10,9,0.88));
-  padding-top: 4rem;
-}
-
-.frente--foto .frente__texto p { color: rgba(255,255,255,0.88); }
+/* `.frente--capas` no lleva reglas: solo marca cuál es esta tarjeta. Lo
+   que la viste es `.capas`, aquí debajo. */
 
 /* ── El corte del piso ───────────────────────────────────────
    Un piso epóxico se vende por capas, no por balde, y eso no se
@@ -472,10 +446,10 @@ p { margin: 0; }
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 3px;
   padding: 1.75rem;
   background: var(--yeso);
+  min-height: 300px;
 }
 
 .seccion--yeso .capas { background: var(--muro); }
@@ -499,11 +473,11 @@ p { margin: 0; }
 .frente:hover .capa:nth-child(4) { transition-delay: 0.09s; }
 .frente:hover .capa:nth-child(5) { transition-delay: 0.12s; }
 
-.capa--sella   { height: 22px; background: var(--chip-3); color: rgba(26,22,20,0.8); }
-.capa--acabado { height: 46px; background: var(--chip-5); }
-.capa--base    { height: 34px; background: var(--chip-4); }
-.capa--imprima { height: 22px; background: var(--chip-2); color: rgba(26,22,20,0.8); }
-.capa--losa    { height: 66px; background: var(--chip-6); }
+.capa--sella   { flex: 1;   min-height: 22px; background: var(--chip-3); color: rgba(26,22,20,0.8); }
+.capa--acabado { flex: 2.2; background: var(--chip-5); }
+.capa--base    { flex: 1.6; background: var(--chip-4); }
+.capa--imprima { flex: 1;   min-height: 22px; background: var(--chip-2); color: rgba(26,22,20,0.8); }
+.capa--losa    { flex: 3;   background: var(--chip-6); }
 
 /* ── Nosotros ────────────────────────────────────────────── */
 
@@ -604,11 +578,7 @@ p { margin: 0; }
   .portada__rejilla > .carta { order: 2; }
   .pie__rejilla { grid-template-columns: 1fr 1fr; }
   .cabecera__datos .cabecera__dato--largo { display: none; }
-  /* Tres columnas no caben en tableta: la primera ocupa el ancho entero
-     porque su mosaico necesita sitio, y las otras dos van a la par. */
-  .frentes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .frente:first-child { grid-column: 1 / -1; }
-  .frente:first-child .frente__mosaico { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .frentes { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 560px) {
@@ -626,8 +596,6 @@ p { margin: 0; }
   .marcas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .marca { padding: 0.9rem; }
   .frentes { grid-template-columns: minmax(0, 1fr); }
-  .frente:first-child .frente__mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .frente--foto { min-height: 300px; }
 }
 
 /* Un aspa de 215 px girada 45 grados ocupa 172 px de ancho desde el eje:
@@ -641,4 +609,56 @@ p { margin: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ── Entradas ────────────────────────────────────────────────
+   El estado inicial solo existe si hay JavaScript (`html.js`): sin
+   él nadie quitaría la clase después y la página se quedaría en
+   blanco. El retraso lo pone el script, por grupos. */
+
+.js .revela {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 0.7, 0.25, 1),
+    transform 0.6s cubic-bezier(0.22, 0.7, 0.25, 1);
+  transition-delay: var(--retraso, 0ms);
+}
+
+.js .revela.esta { opacity: 1; transform: none; }
+
+/* ── Cabecera al bajar ───────────────────────────────────────
+   Se compacta y se despega con una sombra: la barra deja de
+   confundirse con el contenido que le pasa por debajo. */
+
+.cabecera { transition: box-shadow 0.25s ease; }
+.cabecera__fila { transition: min-height 0.25s ease; }
+.cabecera__logo img { transition: height 0.25s ease; }
+
+.cabecera.bajado { box-shadow: 0 10px 30px -22px rgba(26, 22, 20, 0.9); }
+.cabecera.bajado .cabecera__fila { min-height: 62px; }
+.cabecera.bajado .cabecera__logo img { height: 38px; }
+
+/* Los anclajes no deben quedar debajo de la barra fija. */
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 90px; }
+
+/* ── Nombres de las marcas ───────────────────────────────────
+   Bajaron de la portada, donde competían con el titular, a su
+   sitio natural: debajo de los logos. Un logo es una imagen y no
+   se puede buscar; el nombre escrito sí. */
+
+.marcas__lista {
+  margin-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  line-height: 2;
+  color: var(--tinta-70);
+}
+
+.marcas__lista strong { color: var(--tinta); font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .revela { opacity: 1; transform: none; }
 }
