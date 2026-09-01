@@ -1,5 +1,5 @@
 /* ============================================================
-   Distribuciones AGD — movimiento
+   Distribuciones AGD - movimiento
    ------------------------------------------------------------
    Una sola idea, aplicada a toda la página: los bloques entran
    desde abajo, con el mismo recorrido y la misma curva, y los
@@ -57,7 +57,7 @@
   /*
    * La comprobación se hace a mano contra el borde inferior de la ventana,
    * no con IntersectionObserver. Es una landing: si por lo que sea el
-   * observador no entrega —y en algunos entornos sin pintado no lo hace—
+   * observador no entrega -y en algunos entornos sin pintado no lo hace-
    * el contenido se queda invisible y la página aparece en blanco. Con
    * treinta y ocho elementos, mirar sus posiciones al desplazar no se
    * nota, y a cambio no hay forma de que el texto no salga.

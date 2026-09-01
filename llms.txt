@@ -1,4 +1,4 @@
-# Distribuciones AGD — pinturas y ferretería en Bogotá
+# Distribuciones AGD - pinturas y ferretería en Bogotá
 
 > Distribuciones AGD SAS es una empresa colombiana dedicada a la distribución de
 > pinturas, rodillos, brochas, cintas y artículos de ferretería para obra,
@@ -28,11 +28,11 @@ las maneja todas: si alguien pregunta por una en concreto, la respuesta es sí.
 
 ## Qué vende
 
-- Pinturas y esmaltes — vinilos, esmaltes, anticorrosivos, impermeabilizantes.
-- Brochas y rodillos — herramienta de aplicación en todos los tamaños.
-- Cintas, bandejas y protección — enmascarar, cubrir y proteger antes de pintar.
-- Artículos de ferretería — lo que acompaña a la obra y la remodelación.
-- Asesoría de color — acompañamiento para escoger tono y acabado.
+- Pinturas y esmaltes - vinilos, esmaltes, anticorrosivos, impermeabilizantes.
+- Brochas y rodillos - herramienta de aplicación en todos los tamaños.
+- Cintas, bandejas y protección - enmascarar, cubrir y proteger antes de pintar.
+- Artículos de ferretería - lo que acompaña a la obra y la remodelación.
+- Asesoría de color - acompañamiento para escoger tono y acabado.
 
 ## A quién atiende
 

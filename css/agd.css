@@ -1,8 +1,8 @@
 /* ============================================================
-   Distribuciones AGD — hoja de estilos
+   Distribuciones AGD - hoja de estilos
    ------------------------------------------------------------
    La idea: la página se construye con muestras de pintura. Los
-   chips de color no son adorno, son el producto — separan las
+   chips de color no son adorno, son el producto - separan las
    secciones, abren la portada y llevan su código como lo lleva
    una carta de colores de verdad.
 
@@ -681,7 +681,7 @@ p { margin: 0; }
 
 /* La brocha cargada de pintura, debajo del rojo. La foto viene recortada
    en circulo, pero al recortarla a una franja ancha se ve solo la parte
-   central, que es opaca — y donde asome la transparencia hay rojo igual. */
+   central, que es opaca - y donde asome la transparencia hay rojo igual. */
 .cierre::before {
   content: "";
   position: absolute;
@@ -845,8 +845,8 @@ html { scroll-behavior: smooth; }
 }
 
 /* ── La brochada de entrada ──────────────────────────────────
-   Cinco pasadas de brocha cubren la pantalla entera en zigzag —de
-   ida, de vuelta, de ida— como se pinta una pared. Cuando la última
+   Cinco pasadas de brocha cubren la pantalla entera en zigzag -de
+   ida, de vuelta, de ida- como se pinta una pared. Cuando la última
    llega al borde, aparece la marca y la pintura se levanta dejando
    la página debajo.
 
