@@ -31,11 +31,19 @@
    <meta property="og:image:type" content="image/jpeg">
    <meta property="og:image:alt" content="Brocha cargada de pintura roja con el logo de Distribuciones AGD">
    <meta property="og:locale" content="es_CO">
+   <meta property="og:image:secure_url" content="https://distribucionesagd.kgstudio.top/images/og.jpg">
+   <!-- Twitter/X hereda de Open Graph, pero sólo cuando encuentra la tarjeta.
+        Declarados aparte, LinkedIn y Slack también los leen. -->
    <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:title" content="Distribuciones AGD · Pinturas y ferretería en Bogotá">
+   <meta name="twitter:description"
+      content="Pintuco, Sika, Corona, Soudal y ocho marcas más. Escríbenos y te pasamos precio y disponibilidad.">
    <meta name="twitter:image" content="https://distribucionesagd.kgstudio.top/images/og.jpg">
    <meta name="twitter:image:alt" content="Brocha cargada de pintura roja con el logo de Distribuciones AGD">
 
    <link rel="icon" href="images/logo_footer.ico" type="image/x-icon">
+   <link rel="icon" href="images/logo_footer.png" type="image/png" sizes="any">
+   <link rel="apple-touch-icon" href="images/logo_footer.png">
 
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,38 +56,115 @@
       Ficha del negocio para Google. Lo que decide si una ferretería sale
       cuando alguien busca "pinturas cerca" es que estos datos existan y
       coincidan con los del sitio y los de su ficha de Google Business.
+
+      Va como @graph y no como nodo suelto: así el sitio, el negocio y el
+      autor se declaran una sola vez cada uno, con @id estable, y se citan
+      entre ellos. Un asistente que resuma esta página sabe entonces de
+      quién es el negocio y quién hizo el sitio, en vez de encontrarse tres
+      hechos sin relación.
    -->
    <script type="application/ld+json">
    {
      "@context": "https://schema.org",
-     "@type": "HardwareStore",
-     "@id": "https://distribucionesagd.kgstudio.top/#negocio",
-     "name": "Distribuciones AGD",
-     "url": "https://distribucionesagd.kgstudio.top/",
-     "image": "https://distribucionesagd.kgstudio.top/images/og.jpg",
-     "logo": "https://distribucionesagd.kgstudio.top/images/logo.png",
-     "description": "Distribución de pinturas, rodillos, brochas y artículos de ferretería para construcción, remodelación y decoración en Bogotá.",
-     "email": "distribucionesagd1@gmail.com",
-     "telephone": "+573118296138",
-     "taxID": "1010248056-5",
-     "currenciesAccepted": "COP",
-     "address": {
-       "@type": "PostalAddress",
-       "addressLocality": "Bogotá",
-       "addressRegion": "Bogotá D.C.",
-       "addressCountry": "CO"
-     },
-     "areaServed": { "@type": "City", "name": "Bogotá" },
-     "brand": [
-       "Pintuco", "Sika", "Pinturas Corona", "Soudal", "Pinturas Bler",
-       "Pinturas Tonner", "ICO", "Topex", "Pintuland", "Kolor Glam",
-       "Supermastick", "Pinturas Tito Pabón"
-     ],
-     "makesOffer": [
-       { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Pinturas y esmaltes" } },
-       { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Brochas y rodillos" } },
-       { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cintas, bandejas y protección" } },
-       { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Artículos de ferretería" } }
+     "@graph": [
+       {
+         "@type": "WebSite",
+         "@id": "https://distribucionesagd.kgstudio.top/#website",
+         "url": "https://distribucionesagd.kgstudio.top/",
+         "name": "Distribuciones AGD",
+         "inLanguage": "es-CO",
+         "publisher": { "@id": "https://distribucionesagd.kgstudio.top/#negocio" },
+         "author": { "@id": "https://kgstudio.top/#kevin" }
+       },
+       {
+         "@type": "WebPage",
+         "@id": "https://distribucionesagd.kgstudio.top/#pagina",
+         "url": "https://distribucionesagd.kgstudio.top/",
+         "name": "Pinturas y ferretería en Bogotá · Distribuciones AGD",
+         "description": "Distribuciones AGD: pinturas, rodillos, brochas y artículos de ferretería en Bogotá. Manejamos Pintuco, Sika, Corona, Soudal y ocho marcas más.",
+         "isPartOf": { "@id": "https://distribucionesagd.kgstudio.top/#website" },
+         "about": { "@id": "https://distribucionesagd.kgstudio.top/#negocio" },
+         "primaryImageOfPage": "https://distribucionesagd.kgstudio.top/images/og.jpg",
+         "inLanguage": "es-CO"
+       },
+       {
+         "@type": "HardwareStore",
+         "@id": "https://distribucionesagd.kgstudio.top/#negocio",
+         "name": "Distribuciones AGD",
+         "legalName": "Distribuciones AGD SAS",
+         "url": "https://distribucionesagd.kgstudio.top/",
+         "image": "https://distribucionesagd.kgstudio.top/images/og.jpg",
+         "logo": "https://distribucionesagd.kgstudio.top/images/logo.png",
+         "description": "Distribución de pinturas, rodillos, brochas y artículos de ferretería para construcción, remodelación y decoración en Bogotá.",
+         "email": "distribucionesagd1@gmail.com",
+         "telephone": "+573118296138",
+         "taxID": "1010248056-5",
+         "vatID": "1010248056-5",
+         "currenciesAccepted": "COP",
+         "knowsLanguage": "es-CO",
+         "contactPoint": [
+           {
+             "@type": "ContactPoint",
+             "contactType": "sales",
+             "telephone": "+573118296138",
+             "email": "distribucionesagd1@gmail.com",
+             "availableLanguage": "Spanish",
+             "areaServed": "CO"
+           },
+           {
+             "@type": "ContactPoint",
+             "contactType": "customer service",
+             "telephone": "+573203384861",
+             "availableLanguage": "Spanish",
+             "areaServed": "CO"
+           }
+         ],
+         "address": {
+           "@type": "PostalAddress",
+           "addressLocality": "Bogotá",
+           "addressRegion": "Bogotá D.C.",
+           "addressCountry": "CO"
+         },
+         "areaServed": { "@type": "City", "name": "Bogotá" },
+         "brand": [
+           { "@type": "Brand", "name": "Pintuco" },
+           { "@type": "Brand", "name": "Sika" },
+           { "@type": "Brand", "name": "Pinturas Corona" },
+           { "@type": "Brand", "name": "Soudal" },
+           { "@type": "Brand", "name": "Pinturas Bler" },
+           { "@type": "Brand", "name": "Pinturas Tonner" },
+           { "@type": "Brand", "name": "ICO" },
+           { "@type": "Brand", "name": "Topex" },
+           { "@type": "Brand", "name": "Pintuland" },
+           { "@type": "Brand", "name": "Kolor Glam" },
+           { "@type": "Brand", "name": "Supermastick" },
+           { "@type": "Brand", "name": "Pinturas Tito Pabón" }
+         ],
+         "hasOfferCatalog": {
+           "@type": "OfferCatalog",
+           "name": "Pinturas y ferretería",
+           "itemListElement": [
+             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Pinturas y esmaltes", "category": "Pinturas" } },
+             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Brochas y rodillos", "category": "Herramienta de pintura" } },
+             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cintas, bandejas y protección", "category": "Insumos de pintura" } },
+             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoría de color", "category": "Asesoría" } },
+             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Artículos de ferretería", "category": "Ferretería" } }
+           ]
+         },
+         "makesOffer": [
+           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Pinturas y esmaltes" } },
+           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Brochas y rodillos" } },
+           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cintas, bandejas y protección" } },
+           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Artículos de ferretería" } }
+         ]
+       },
+       {
+         "@type": "Person",
+         "@id": "https://kgstudio.top/#kevin",
+         "name": "Kevin Gonzalez",
+         "alternateName": "kagonzalezdev",
+         "url": "https://kgstudio.top/"
+       }
      ]
    }
    </script>
@@ -423,8 +508,23 @@
             <div>
                <img class="pie__logo" src="images/logo.png" alt="Distribuciones AGD SAS" width="394" height="262">
                <p>Pinturas, rodillos, brochas y artículos de ferretería para construcción, remodelación y
-                  decoración.</p>
+                  decoración. Distribuimos en Bogotá y alrededores.</p>
             </div>
+
+            <!-- El índice del pie no es decoración: es el único sitio de la
+                 página donde las cinco secciones están enlazadas en texto.
+                 Un rastreador que entra por el pie encuentra la página
+                 completa desde aquí. -->
+            <nav aria-label="Secciones del sitio">
+               <h3>Secciones</h3>
+               <ul class="pie__indice">
+                  <li><a href="#marcas">Las doce marcas</a></li>
+                  <li><a href="#productos">Pinturas y ferretería</a></li>
+                  <li><a href="#frentes">Acabados y laboratorios</a></li>
+                  <li><a href="#nosotros">Quiénes somos</a></li>
+                  <li><a href="#cotizar">Pedir cotización</a></li>
+               </ul>
+            </nav>
 
             <div>
                <h3>Contacto</h3>
@@ -457,7 +557,7 @@
                   </div>
                   <div>
                      <dt>Ciudad</dt>
-                     <dd>Bogotá, Colombia</dd>
+                     <dd><a href="https://distribucionesagd.kgstudio.top/">Bogotá, Colombia</a></dd>
                   </div>
                </dl>
             </div>
@@ -465,7 +565,8 @@
 
          <div class="pie__cola">
             <span>© <span id="anio">2026</span> Distribuciones AGD SAS</span>
-            <span>Sitio por Kevin Gonzalez · kgstudio.top</span>
+            <span>Sitio por <a href="https://kgstudio.top/" target="_blank" rel="noopener author">Kevin Gonzalez</a>
+               · <a href="https://kgstudio.top/" target="_blank" rel="noopener">kgstudio.top</a></span>
          </div>
       </div>
    </footer>

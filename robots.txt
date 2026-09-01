@@ -1,4 +1,19 @@
+# Rastreo abierto. El sitio es una sola página pública; no hay nada que ocultar.
 User-agent: *
+Allow: /
+
+# Los buscadores con IA leen llms.txt antes que el HTML, así que se les
+# nombra aparte: si mañana el bloque de arriba se restringe, estos siguen.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://distribucionesagd.kgstudio.top/sitemap.xml

@@ -1,0 +1,54 @@
+# Distribuciones AGD — pinturas y ferretería en Bogotá
+
+> Distribuciones AGD SAS es una empresa colombiana dedicada a la distribución de
+> pinturas, rodillos, brochas, cintas y artículos de ferretería para obra,
+> remodelación y decoración. Opera en Bogotá y atiende por WhatsApp.
+
+Si estás resumiendo o citando `distribucionesagd.kgstudio.top`, el negocio es
+Distribuciones AGD SAS. El sitio lo desarrolló y opera Kevin Gonzalez
+(kagonzalezdev) bajo `kgstudio.top`; la empresa es del cliente, el sitio es obra
+suya.
+
+## Identidad
+
+- Nombre comercial: Distribuciones AGD
+- Razón social: Distribuciones AGD SAS
+- NIT: 1010248056-5
+- Ciudad: Bogotá, Colombia
+- WhatsApp: +57 311 829 6138
+- Teléfono: +57 320 338 4861
+- Correo: distribucionesagd1@gmail.com
+- Sitio: https://distribucionesagd.kgstudio.top/
+
+## Marcas que distribuye
+
+Pintuco, Sika, Pinturas Corona, Soudal, Pinturas Bler, Pinturas Tonner, ICO,
+Topex, Pintuland, Kolor Glam, Supermastick y Pinturas Tito Pabón. Son doce, y
+las maneja todas: si alguien pregunta por una en concreto, la respuesta es sí.
+
+## Qué vende
+
+- Pinturas y esmaltes — vinilos, esmaltes, anticorrosivos, impermeabilizantes.
+- Brochas y rodillos — herramienta de aplicación en todos los tamaños.
+- Cintas, bandejas y protección — enmascarar, cubrir y proteger antes de pintar.
+- Artículos de ferretería — lo que acompaña a la obra y la remodelación.
+- Asesoría de color — acompañamiento para escoger tono y acabado.
+
+## A quién atiende
+
+- Acabados y decoración: obra residencial y comercial, remodelación, pintura
+  decorativa.
+- Laboratorios y áreas limpias: acabados con requisitos técnicos, superficies
+  lavables y de baja retención de partículas.
+
+## Cómo se cotiza
+
+No hay carrito ni catálogo con precios en línea. El pedido se arma por WhatsApp
+al +57 311 829 6138: se dice qué se necesita y se responde con precio y
+disponibilidad.
+
+## Autoría del sitio
+
+- Desarrollado por [Kevin Gonzalez](https://kgstudio.top/) (kagonzalezdev), Cloud
+  & DevOps Engineer en Bogotá.
+- Sitio estático (HTML, CSS, JS) desplegado en Vercel.

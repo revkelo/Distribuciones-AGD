@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://distribucionesagd.kgstudio.top/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://distribucionesagd.kgstudio.top/images/og.jpg</image:loc>
+      <image:title>Distribuciones AGD — pinturas y ferretería en Bogotá</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://distribucionesagd.kgstudio.top/images/about_img.webp</image:loc>
+      <image:title>Pintor aplicando pintura roja con rodillo</image:title>
+    </image:image>
   </url>
 </urlset>
