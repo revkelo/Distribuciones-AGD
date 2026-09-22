@@ -62,6 +62,14 @@
       entre ellos. Un asistente que resuma esta página sabe entonces de
       quién es el negocio y quién hizo el sitio, en vez de encontrarse tres
       hechos sin relación.
+
+      El catálogo son categorías y no productos, a propósito. Declararlas como
+      `Product` daba ocho errores en Search Console -"debe especificarse
+      offers, review o aggregateRating"-, y con razón: un `Product` promete una
+      ficha de producto con precio, valoración o reseña, y aquí no hay ni
+      precios ni fichas. Son las familias que se surten. Un `OfferCatalog`
+      dentro de otro es exactamente eso, una sección del catálogo, y no promete
+      nada que la página no tenga.
    -->
    <script type="application/ld+json">
    {
@@ -144,19 +152,13 @@
            "@type": "OfferCatalog",
            "name": "Pinturas y ferretería",
            "itemListElement": [
-             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Pinturas y esmaltes", "category": "Pinturas" } },
-             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Brochas y rodillos", "category": "Herramienta de pintura" } },
-             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cintas, bandejas y protección", "category": "Insumos de pintura" } },
-             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoría de color", "category": "Asesoría" } },
-             { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Artículos de ferretería", "category": "Ferretería" } }
+             { "@type": "OfferCatalog", "name": "Pinturas y esmaltes" },
+             { "@type": "OfferCatalog", "name": "Brochas y rodillos" },
+             { "@type": "OfferCatalog", "name": "Cintas, bandejas y protección" },
+             { "@type": "OfferCatalog", "name": "Artículos de ferretería" },
+             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoría de color", "category": "Asesoría" } }
            ]
-         },
-         "makesOffer": [
-           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Pinturas y esmaltes" } },
-           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Brochas y rodillos" } },
-           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cintas, bandejas y protección" } },
-           { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Artículos de ferretería" } }
-         ]
+         }
        },
        {
          "@type": "Person",
