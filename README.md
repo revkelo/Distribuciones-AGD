@@ -1,56 +1,83 @@
-# Distribuciones AGD — Sitio Web Corporativo
+# Distribuciones AGD - sitio web corporativo
 
-Página web oficial de **Distribuciones AGD**, empresa colombiana de ferretería y pinturas.
-Sitio estático, sin backend.
+Sitio de **Distribuciones AGD SAS**, distribuidor de pinturas y artículos de
+ferretería en Bogotá. Una sola página, estática, sin backend.
 
 **En producción:** <https://distribucionesagd.kgstudio.top>
 
-Desplegado en Vercel; cada push a `main` publica. Antes estaba en GitHub Pages,
-que sigue respondiendo en `revkelo.github.io/Distribuciones-AGD/` — el `canonical`
-del HTML apunta al dominio bueno para que Google no los cuente como dos sitios.
+Desplegado en Vercel; cada push a `main` publica.
+
+### Las tres copias
+
+El mismo HTML responde en tres sitios, y solo uno es el bueno:
+
+| URL | Qué es |
+| --- | --- |
+| `distribucionesagd.kgstudio.top` | El dominio real. Es el `canonical`. |
+| `distribuciones-agd.vercel.app` | La URL que Vercel asigna sola. |
+| `revkelo.github.io/Distribuciones-AGD/` | GitHub Pages, el host anterior. |
+
+Las tres sirven el mismo `<link rel="canonical">` apuntando a la primera, así
+que Google no las cuenta como sitios distintos. Cualquier enlace que se reparta
+-el `homepage` del repo, WhatsApp, una firma de correo- va al dominio real: un
+enlace a la copia no le suma autoridad al que tiene que posicionar.
 
 ---
 
 ## Sobre el cliente
 
-**Distribuciones AGD** es una empresa dedicada a la distribución de productos de ferretería, pinturas y materiales para construcción, remodelación y decoración.
+Distribución de pinturas, rodillos, brochas, cintas y artículos de ferretería
+para obra, remodelación y decoración.
 
 - **NIT:** 1010248056-5
-- **Contacto:** distribucionesagd1@gmail.com
+- **Correo:** distribucionesagd1@gmail.com
 - **WhatsApp:** +57 311 829 6138
+- **Teléfono:** +57 320 338 4861
+
+Si cambia un dato de identidad, cambia también en `llms.txt` y en el JSON-LD de
+`index.html`. Se contradicen en silencio.
 
 ---
 
 ## Secciones del sitio
 
-| Sección | Descripción |
-|---------|-------------|
-| **Hero / Carousel** | Carrusel con los logos de las 12 marcas distribuidas |
-| **¿Quiénes Somos?** | Presentación de la empresa con CTA a WhatsApp |
-| **Servicios** | 4 servicios destacados con imágenes |
-| **Contacto** | Botón flotante de WhatsApp con mensaje preescrito |
+| Ancla | Qué hay |
+| --- | --- |
+| `#inicio` | Portada con los nombres de las marcas en texto y carta de colores |
+| `#marcas` | Rejilla con las doce marcas que se distribuyen |
+| `#productos` | Las cuatro familias del catálogo |
+| `#frentes` | Acabados y decoración; laboratorios y áreas limpias |
+| `#nosotros` | Presentación de la empresa |
+| `#cotizar` | Cierre con los canales de contacto |
 
----
-
-## Características técnicas
-
-- **Responsive** — adaptado a móvil, tablet y escritorio
-- **WhatsApp Business** — botón flotante con mensaje preescrito para consultar precios y catálogo
-- **Carrusel de marcas** — los 12 proveedores que distribuye AGD (Pintuco, Sika, Corona, Soudal, Bler, Tonner, ICO, Topex, Pintuland, Kolor, Supermastick, Tito Pabón). Los nombres van también en texto en la portada: en una imagen no hay nada que buscar
-- **Sin backend** — sitio 100% estático
-- **SEO** — título, descripción, `canonical`, Open Graph (importa: el enlace se reparte por WhatsApp) y ficha `HardwareStore` en JSON-LD
-- **Carga optimizada** — loader animado mientras carga el contenido
+Los enlaces del menú son anclas, no páginas: la cortina de carga solo se paga al
+entrar o al recargar.
 
 ---
 
 ## Stack
 
-- HTML5 · CSS3 · JavaScript
-- [Bootstrap 4](https://getbootstrap.com/docs/4.0/)
-- [jQuery 3](https://jquery.com/) + jQuery UI
-- [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
-- [Font Awesome 4.7](https://fontawesome.com/)
-- WhatsApp Business API
+HTML, CSS y JavaScript a mano. Sin frameworks ni dependencias: una hoja
+(`css/agd.css`) y un script (`js/agd.js`). Tipografías de Google Fonts.
+
+La versión anterior era una plantilla de Bootstrap 4 con jQuery y Owl Carousel.
+De esa quedaba el carrusel de marcas, que enseñaba una y escondía once; ahora es
+una rejilla, porque "¿ustedes manejan Pintuco?" es la pregunta que trae al
+cliente.
+
+---
+
+## SEO
+
+Lleva lo que pide `kgstudio-hub/PRACTICAS.md`: `title`, `description`,
+`canonical`, Open Graph con medidas, `@graph` en JSON-LD con ficha
+`HardwareStore` citando `https://kgstudio.top/#kevin`, `robots.txt` con los
+rastreadores de IA nombrados, `sitemap.xml` con `lastmod` real, `llms.txt` y
+favicon propio.
+
+Lo que el código no puede resolver: la ficha de Google Business. Sin ella el
+negocio no sale en el mapa ni en el panel de la derecha, por muy bien marcada
+que esté la página.
 
 ---
 
@@ -65,4 +92,4 @@ Para publicar: `git push` a `main`. Vercel despliega solo.
 
 ---
 
-Desarrollado por **Kevin Gonzalez**
+Desarrollado por **Kevin Gonzalez** (kagonzalezdev).
